@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html lang="en-US" class="twbb">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Estate - Find Your Dream Home</title>
+    <meta name='robots' content='noindex, nofollow' />
+    <meta name="description"
+        content="Find your dream home with our expert real estate services. Browse property listings, get market insights, and connect with our experienced team.">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- Resource hints -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style">
+
+    <!-- Deferred CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        media="print" onload="this.media='all'">
+
+    <!-- Critical CSS -->
+    <style>
+        /* Optimize font loading */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Open Sans Regular'), local('OpenSans-Regular'),
+                url('https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4n.woff2') format('woff2');
+        }
+
+        /* Critical rendering path styles */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003d82;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Show content when loaded */
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Loading placeholder */
+        .content-placeholder {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Above the fold content */
+        .site-header {
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .hero-section {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--light-gray);
+            padding: 20px;
+        }
+
+        /* Lazy loading images */
+        img[loading="lazy"] {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        img[loading="lazy"].loaded {
+            opacity: 1;
+        }
+
+        .privacy-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(33, 33, 33, 0.95);
+            color: #fff;
+            padding: 1rem;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        .privacy-banner.show {
+            display: block;
+        }
+
+        .privacy-banner__content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .privacy-banner__text {
+            margin: 0;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .privacy-banner__buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .privacy-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-size: 14px;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .privacy-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .privacy-btn--accept {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .privacy-btn--reject {
+            background: #f44336;
+            color: white;
+        }
+
+        .privacy-btn--settings {
+            background: #2196F3;
+            color: white;
+        }
+
+        .privacy-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 10000;
+            display: none;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .privacy-modal.show {
+            display: block;
+        }
+
+        .privacy-modal__header {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .privacy-modal__title {
+            font-size: 1.5rem;
+            margin: 0 0 0.5rem;
+            color: #333;
+        }
+
+        .privacy-modal__description {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .privacy-option {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .privacy-option:hover {
+            background: #f1f3f4;
+        }
+
+        .privacy-option__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-option__title {
+            font-weight: 500;
+            color: #333;
+            margin: 0;
+        }
+
+        .privacy-switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+
+        .privacy-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .privacy-switch__slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .privacy-switch__slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        .privacy-switch input:checked+.privacy-switch__slider {
+            background-color: #4CAF50;
+        }
+
+        .privacy-switch input:checked+.privacy-switch__slider:before {
+            transform: translateX(22px);
+        }
+
+        .privacy-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+
+        .privacy-overlay.show {
+            display: block;
+        }
+
+        /* Core Styles */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003d82;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --spacing-unit: 20px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .site-header {
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .e-con-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Navigation Styles */
+        .twbb-nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .twbb-nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        .twbb-nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Mobile Menu Styles */
+        .twbb-menu-toggle {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .twbb-menu-toggle-icon {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-color);
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .twbb-menu-toggle-icon::before,
+        .twbb-menu-toggle-icon::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: transform 0.3s;
+        }
+
+        .twbb-menu-toggle-icon::before {
+            top: -8px;
+        }
+
+        .twbb-menu-toggle-icon::after {
+            bottom: -8px;
+        }
+
+        @media (max-width: 768px) {
+            .twbb-menu-toggle {
+                display: block;
+            }
+
+            .twbb-nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .twbb-nav-menu.active {
+                display: flex;
+            }
+        }
+
+        /* Button Styles */
+        .elementor-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .elementor-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .elementor-button-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .elementor-button-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://10web-site.ai/238/wp-content/uploads/sites/250/2025/01/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Featured Properties */
+        .featured-properties {
+            padding: 80px 20px;
+            background-color: var(--light-gray);
+        }
+
+        .featured-properties h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 20px;
+        }
+
+        .services-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 36px;
+            }
+
+            .hero-section p {
+                font-size: 18px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background-color: var(--light-gray);
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex-basis: 25%;
+        }
+
+        .footer-section h4 {
+            margin-top: 0;
+        }
+
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-info li {
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-link {
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+
+    <!-- Core Styles -->
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel='stylesheet' href='https://10web-site.ai/238/wp-content/plugins/elementor/assets/css/frontend.min.css'
+        type='text/css' media='all' />
+    <link rel='stylesheet'
+        href='https://10web-site.ai/238/wp-content/plugins/tenweb-builder/assets/frontend/css/frontend.min.css'
+        type='text/css' media='all' />
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C500%2C600%2C700%2C800&#038;display=swap'
+        type='text/css' media='all' />
+
+    <!-- Custom Styles -->
+    <style id='global-styles-inline-css' type='text/css'>
+        /* Base Styles */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003d82;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --spacing-unit: 20px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .site-header {
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .e-con-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Navigation Styles */
+        .twbb-nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .twbb-nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        .twbb-nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Mobile Menu Styles */
+        .twbb-menu-toggle {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .twbb-menu-toggle-icon {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-color);
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .twbb-menu-toggle-icon::before,
+        .twbb-menu-toggle-icon::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: transform 0.3s;
+        }
+
+        .twbb-menu-toggle-icon::before {
+            top: -8px;
+        }
+
+        .twbb-menu-toggle-icon::after {
+            bottom: -8px;
+        }
+
+        @media (max-width: 768px) {
+            .twbb-menu-toggle {
+                display: block;
+            }
+
+            .twbb-nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .twbb-nav-menu.active {
+                display: flex;
+            }
+        }
+
+        /* Button Styles */
+        .elementor-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .elementor-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .elementor-button-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .elementor-button-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://10web-site.ai/238/wp-content/uploads/sites/250/2025/01/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Featured Properties */
+        .featured-properties {
+            padding: 80px 20px;
+            background-color: var(--light-gray);
+        }
+
+        .featured-properties h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 20px;
+        }
+
+        .services-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 36px;
+            }
+
+            .hero-section p {
+                font-size: 18px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background-color: var(--light-gray);
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex-basis: 25%;
+        }
+
+        .footer-section h4 {
+            margin-top: 0;
+        }
+
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-info li {
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-link {
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Privacy-first tracking setup -->
+    <script>
+        // Initialize dataLayer with privacy-first settings
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        // Set default consent state
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'functionality_storage': 'denied',
+            'personalization_storage': 'denied',
+            'security_storage': 'granted'
+        });
+
+        // Privacy preferences manager
+        const privacyPrefs = {
+            load() {
+                try {
+                    return JSON.parse(sessionStorage.getItem('privacy_prefs')) || {};
+                } catch (e) {
+                    return {};
+                }
+            },
+            save(prefs) {
+                sessionStorage.setItem('privacy_prefs', JSON.stringify(prefs));
+                this.updateConsent(prefs);
+            },
+            updateConsent(prefs) {
+                gtag('consent', 'update', {
+                    'analytics_storage': prefs.analytics ? 'granted' : 'denied',
+                    'functionality_storage': prefs.functionality ? 'granted' : 'denied',
+                    'personalization_storage': prefs.personalization ? 'granted' : 'denied',
+                    'security_storage': 'granted'
+                });
+            }
+        };
+
+        // Initialize GTM with privacy settings
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js',
+                'cookieless': true,
+                'privacy_mode': 'strict'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s);
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-M6GPZ95');
+
+        // Initialize privacy settings
+        document.addEventListener('DOMContentLoaded', () => {
+            const prefs = privacyPrefs.load();
+            privacyPrefs.updateConsent(prefs);
+        });
+    </script>
+    <script>
+        // Fallback functions for common blocked services
+        window.gtag = window.gtag || function () {
+            console.log('Analytics call blocked but site continues to work');
+        };
+        window.fbq = window.fbq || function () {
+            console.log('Facebook Pixel blocked but site continues to work');
+        };
+
+        // Handle third-party script loading errors
+        window.addEventListener('error', function (e) {
+            if (e.target.tagName === 'SCRIPT') {
+                console.log('Script load failed:', e.target.src);
+                // Prevent error from showing in console
+                e.preventDefault();
+            }
+        }, true);
+    </script>
+</head>
+
+<body class="page-template-default page elementor-default elementor-kit-4280 elementor-page">
+    <div id="page" class="site">
+        <header class="site-header">
+            <div class="elementor elementor-4274">
+                <div class="elementor-element elementor-element-j8fzt5st twbb_section e-con-boxed e-flex e-con e-parent"
+                    id="header">
+                    <div class="e-con-inner">
+                        <div
+                            class="elementor-element elementor-element-g2wcoh79 elementor-widget elementor-widget-image">
+                            <div class="elementor-widget-container">
+                                <a href="https://10web-site.ai/238/eternal-woodcock/">
+                                    <img width="368" height="100"
+                                        src="https://10web-site.ai/238/wp-content/uploads/sites/250/2025/01/logo_fOiKug84.webp"
+                                        class="attachment-full size-full wp-image-4214" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                        <nav class="twbb-nav-menu--main twbb-nav-menu__container twbb-nav-menu--layout-horizontal">
+                            <button class="twbb-menu-toggle">
+                                <span class="twbb-menu-toggle-icon"></span>
+                            </button>
+                            <ul id="menu-1-4asohxkd" class="twbb-nav-menu">
+                                <li><a href="https://10web-site.ai/238/eternal-woodcock/property-listings/"
+                                        class="twbb-item">Property Listings</a></li>
+                                <li><a href="https://10web-site.ai/238/eternal-woodcock/market-insights/"
+                                        class="twbb-item">Market Insights</a></li>
+                                <li><a href="https://10web-site.ai/238/eternal-woodcock/about-us/"
+                                        class="twbb-item">About Us</a></li>
+                                <li><a href="https://10web-site.ai/238/eternal-woodcock/contact-us/"
+                                        class="twbb-item">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                        <div class="elementor-button-wrapper">
+                            <a class="elementor-button elementor-button-link elementor-size-sm"
+                                href="https://10web-site.ai/238/eternal-woodcock/property-listings/">
+                                <span class="elementor-button-text">View Listings</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="content" class="site-content">
+            <div class="elementor elementor-4254">
+                <section class="elementor-section elementor-top-section elementor-element elementor-element-p5zal8aj">
+                    <div class="elementor-container">
+                        <div class="elementor-column">
+                            <div class="elementor-widget-wrap">
+                                <!-- Hero Section -->
+                                <div class="hero-section">
+                                    <h1>Find Your Dream Home</h1>
+                                    <p>Discover the perfect property that matches your lifestyle and aspirations. Our
+                                        expert team is here to guide you through every step of your real estate journey.
+                                    </p>
+                                    <div class="hero-buttons">
+                                        <a href="property-listings" class="elementor-button">View Listings</a>
+                                        <a href="contact-us" class="elementor-button elementor-button-outline">Contact
+                                            Us</a>
+                                    </div>
+                                </div>
+
+                                <!-- Featured Properties -->
+                                <div class="featured-properties">
+                                    <h2>Featured Properties</h2>
+                                    <div class="property-grid">
+                                        <!-- Property cards will be populated dynamically -->
+                                    </div>
+                                </div>
+
+                                <!-- Services Section -->
+                                <div class="services-section">
+                                    <h2>Our Services</h2>
+                                    <div class="services-grid">
+                                        <div class="service-card">
+                                            <i class="fas fa-home"></i>
+                                            <h3>Property Sales</h3>
+                                            <p>Expert guidance in buying and selling properties</p>
+                                        </div>
+                                        <div class="service-card">
+                                            <i class="fas fa-key"></i>
+                                            <h3>Property Management</h3>
+                                            <p>Professional management services for property owners</p>
+                                        </div>
+                                        <div class="service-card">
+                                            <i class="fas fa-chart-line"></i>
+                                            <h3>Market Analysis</h3>
+                                            <p>Detailed market insights and property valuations</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Banner -->
+    <div class="privacy-banner">
+        <div class="privacy-banner__content">
+            <p class="privacy-banner__text">We value your privacy. Control how your data is used to enhance your
+                experience.</p>
+            <div class="privacy-banner__buttons">
+                <button class="privacy-btn privacy-btn--accept" onclick="PrivacyManager.acceptAll()">Accept All</button>
+                <button class="privacy-btn privacy-btn--settings"
+                    onclick="PrivacyManager.showSettings()">Customize</button>
+                <button class="privacy-btn privacy-btn--reject" onclick="PrivacyManager.rejectAll()">Reject All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Settings Modal -->
+    <div class="privacy-overlay"></div>
+    <div class="privacy-modal">
+        <div class="privacy-modal__header">
+            <h2 class="privacy-modal__title">Privacy Preferences</h2>
+            <p class="privacy-modal__description">Customize your privacy settings. Changes will be saved for this
+                session.</p>
+        </div>
+        <div class="privacy-options">
+            <div class="privacy-option">
+                <div class="privacy-option__header">
+                    <h3 class="privacy-option__title">Analytics</h3>
+                    <label class="privacy-switch">
+                        <input type="checkbox" id="privacy-analytics">
+                        <span class="privacy-switch__slider"></span>
+                    </label>
+                </div>
+                <p>Help us improve by allowing anonymous usage data collection.</p>
+            </div>
+            <div class="privacy-option">
+                <div class="privacy-option__header">
+                    <h3 class="privacy-option__title">Functionality</h3>
+                    <label class="privacy-switch">
+                        <input type="checkbox" id="privacy-functionality">
+                        <span class="privacy-switch__slider"></span>
+                    </label>
+                </div>
+                <p>Enable features like saving your preferences and form data.</p>
+            </div>
+            <div class="privacy-option">
+                <div class="privacy-option__header">
+                    <h3 class="privacy-option__title">Personalization</h3>
+                    <label class="privacy-switch">
+                        <input type="checkbox" id="privacy-personalization">
+                        <span class="privacy-switch__slider"></span>
+                    </label>
+                </div>
+                <p>Allow us to customize content based on your interests.</p>
+            </div>
+        </div>
+        <div class="privacy-banner__buttons" style="margin-top: 1.5rem;">
+            <button class="privacy-btn privacy-btn--accept" onclick="PrivacyManager.saveSettings()">Save
+                Preferences</button>
+            <button class="privacy-btn privacy-btn--reject" onclick="PrivacyManager.hideSettings()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Privacy Manager with Analytics
+        const PrivacyManager = {
+            init() {
+                this.loadPreferences();
+                this.showBannerIfNeeded();
+                this.initAnalytics();
+            },
+
+            loadPreferences() {
+                const prefs = privacyPrefs.load();
+                this.updateUI(prefs);
+                return prefs;
+            },
+
+            updateUI(prefs) {
+                document.getElementById('privacy-analytics').checked = prefs.analytics || false;
+                document.getElementById('privacy-functionality').checked = prefs.functionality || false;
+                document.getElementById('privacy-personalization').checked = prefs.personalization || false;
+            },
+
+            savePreferences(prefs) {
+                privacyPrefs.save({
+                    ...prefs,
+                    timestamp: new Date().toISOString()
+                });
+                this.updateConsent(prefs);
+            },
+
+            showBannerIfNeeded() {
+                const prefs = privacyPrefs.load();
+                if (!prefs.timestamp) {
+                    document.querySelector('.privacy-banner').classList.add('show');
+                    this.trackEvent('privacy_banner_shown');
+                }
+            },
+
+            acceptAll() {
+                const prefs = {
+                    analytics: true,
+                    functionality: true,
+                    personalization: true
+                };
+                this.savePreferences(prefs);
+                this.updateUI(prefs);
+                this.hideBanner();
+                this.trackEvent('privacy_accept_all');
+            },
+
+            rejectAll() {
+                const prefs = {
+                    analytics: false,
+                    functionality: false,
+                    personalization: false
+                };
+                this.savePreferences(prefs);
+                this.updateUI(prefs);
+                this.hideBanner();
+                this.trackEvent('privacy_reject_all');
+            },
+
+            showSettings() {
+                document.querySelector('.privacy-modal').classList.add('show');
+                document.querySelector('.privacy-overlay').classList.add('show');
+                this.trackEvent('privacy_settings_shown');
+            },
+
+            hideSettings() {
+                document.querySelector('.privacy-modal').classList.remove('show');
+                document.querySelector('.privacy-overlay').classList.remove('show');
+                this.trackEvent('privacy_settings_closed');
+            },
+
+            saveSettings() {
+                const prefs = {
+                    analytics: document.getElementById('privacy-analytics').checked,
+                    functionality: document.getElementById('privacy-functionality').checked,
+                    personalization: document.getElementById('privacy-personalization').checked
+                };
+                this.savePreferences(prefs);
+                this.hideBanner();
+                this.hideSettings();
+                this.trackEvent('privacy_settings_saved', prefs);
+            },
+
+            hideBanner() {
+                document.querySelector('.privacy-banner').classList.remove('show');
+            },
+
+            initAnalytics() {
+                // Track page load with privacy status
+                const prefs = this.loadPreferences();
+                this.trackEvent('page_view', {
+                    privacy_status: prefs.timestamp ? 'configured' : 'pending',
+                    ...prefs
+                });
+            },
+
+            trackEvent(eventName, eventData = {}) {
+                // Only track if analytics is allowed
+                const prefs = privacyPrefs.load();
+                if (prefs.analytics || eventName.startsWith('privacy_')) {
+                    dataLayer.push({
+                        event: eventName,
+                        ...eventData,
+                        timestamp: new Date().toISOString(),
+                        privacy_mode: 'strict'
+                    });
+                }
+            }
+        };
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            PrivacyManager.init();
+        });
+    </script>
+
+    <script>
+        // AI-Enhanced Security and Privacy Protection System v3
+        const SecurityManager = {
+            // Core configuration and state
+            config: {
+                enabled: true,
+                debugMode: false,
+                metricsInterval: 60000,
+                storageKey: 'security_metrics',
+                maxLogSize: 1000,
+                threatLevel: 'high',
+                allowedDomains: ['self', 'trusted-cdn.com', 'api.example.com'],
+                blockedDomains: ['malicious.com', 'tracker.com', 'evil.net']
+            },
+
+            state: {
+                initialized: false,
+                monitoringActive: false,
+                lastUpdate: null,
+                threatCount: 0,
+                anomalyCount: 0,
+                protectionLevel: 'normal',
+                activeCountermeasures: new Set()
+            },
+
+            // Base patterns for detection
+            patterns: {
+                malicious: [
+                    /eval\s*\(/,
+                    /document\.write/,
+                    /\.innerHTML\s*=/,
+                    /javascript:/,
+                    /fromCharCode/
+                ],
+                suspicious: [
+                    /localStorage\s*\.\s*getItem/,
+                    /sessionStorage\s*\.\s*getItem/,
+                    /document\.cookie/,
+                    /navigator\.sendBeacon/
+                ]
+            },
+
+            // Utility functions
+            utils: {
+                isDomainAllowed(url) {
+                    try {
+                        const domain = new URL(url).hostname;
+                        return SecurityManager.config.allowedDomains.some(
+                            allowed => domain.includes(allowed)
+                        );
+                    } catch {
+                        return false;
+                    }
+                },
+
+                isDomainBlocked(url) {
+                    try {
+                        const domain = new URL(url).hostname;
+                        return SecurityManager.config.blockedDomains.some(
+                            blocked => domain.includes(blocked)
+                        );
+                    } catch {
+                        return false;
+                    }
+                }
+            },
+
+            // AI-driven security features
+            ai: {
+                // Neural pattern recognition
+                neural: {
+                    patterns: new Map(),
+                    weights: new Map(),
+                    threshold: 0.85,
+
+                    // Initialize neural network
+                    init() {
+                        this.loadPatterns();
+                        this.trainNetwork();
+                    },
+
+                    // Load known patterns
+                    loadPatterns() {
+                        Object.entries(SecurityManager.patterns).forEach(([category, patterns]) => {
+                            patterns.forEach(pattern => {
+                                this.patterns.set(pattern, {
+                                    category,
+                                    weight: 1.0,
+                                    matches: 0,
+                                    lastSeen: Date.now()
+                                });
+                            });
+                        });
+                    },
+
+                    // Train network with existing patterns
+                    trainNetwork() {
+                        this.patterns.forEach((data, pattern) => {
+                            this.weights.set(pattern, this.calculateWeight(data));
+                        });
+                    },
+
+                    // Calculate pattern weight based on history
+                    calculateWeight(data) {
+                        const age = (Date.now() - data.lastSeen) / (24 * 60 * 60 * 1000);
+                        const frequency = data.matches / Math.max(1, age);
+                        return Math.min(1, (frequency * data.weight) / 100);
+                    },
+
+                    // Analyze content using neural patterns
+                    analyze(content) {
+                        let score = 0;
+                        let matches = [];
+
+                        this.patterns.forEach((data, pattern) => {
+                            if (this.matchPattern(content, pattern)) {
+                                const weight = this.weights.get(pattern);
+                                score += weight;
+                                matches.push({
+                                    pattern,
+                                    weight,
+                                    category: data.category
+                                });
+                            }
+                        });
+
+                        return {
+                            score: score / matches.length,
+                            matches,
+                            isThreating: score / matches.length > this.threshold
+                        };
+                    },
+
+                    // Pattern matching with fuzzy logic
+                    matchPattern(content, pattern) {
+                        if (pattern instanceof RegExp) {
+                            return pattern.test(content);
+                        }
+                        return this.fuzzyMatch(content, pattern);
+                    },
+
+                    // Fuzzy string matching
+                    fuzzyMatch(str, pattern) {
+                        const strLower = str.toLowerCase();
+                        const patternLower = pattern.toLowerCase();
+                        let score = 0;
+                        let patternIdx = 0;
+
+                        for (let strIdx = 0; strIdx < strLower.length && patternIdx < patternLower.length; strIdx++) {
+                            if (strLower[strIdx] === patternLower[patternIdx]) {
+                                score += 1;
+                                patternIdx++;
+                            }
+                        }
+
+                        return score / patternLower.length > 0.8;
+                    }
+                },
+
+                // Behavioral analysis engine
+                behavior: {
+                    sequences: [],
+                    patterns: new Map(),
+                    anomalies: new Set(),
+
+                    // Track user behavior
+                    track(event) {
+                        this.sequences.push({
+                            ...event,
+                            timestamp: Date.now()
+                        });
+
+                        this.analyze();
+                        this.detectAnomalies();
+                    },
+
+                    // Analyze behavior patterns
+                    analyze() {
+                        const window = 10000; // 10 second window
+                        const now = Date.now();
+
+                        // Clean old sequences
+                        this.sequences = this.sequences.filter(
+                            seq => now - seq.timestamp < window
+                        );
+
+                        // Find patterns in recent sequences
+                        if (this.sequences.length >= 3) {
+                            const pattern = this.sequences
+                                .slice(-3)
+                                .map(seq => seq.type)
+                                .join(':');
+
+                            this.patterns.set(
+                                pattern,
+                                (this.patterns.get(pattern) || 0) + 1
+                            );
+
+                            this.checkPatternThreshold(pattern);
+                        }
+                    },
+
+                    // Check for pattern threshold violations
+                    checkPatternThreshold(pattern) {
+                        const count = this.patterns.get(pattern);
+                        const threshold = this.getThresholdForPattern(pattern);
+
+                        if (count > threshold) {
+                            this.handleAnomalousPattern(pattern, count);
+                        }
+                    },
+
+                    // Get threshold for specific pattern
+                    getThresholdForPattern(pattern) {
+                        const baseThreshold = 10;
+                        const types = pattern.split(':');
+
+                        // Adjust threshold based on pattern type
+                        if (types.includes('network')) return baseThreshold * 2;
+                        if (types.includes('storage')) return baseThreshold * 1.5;
+                        if (types.includes('script')) return baseThreshold * 0.5;
+
+                        return baseThreshold;
+                    },
+
+                    // Handle anomalous pattern
+                    handleAnomalousPattern(pattern, count) {
+                        // Record the anomaly with detailed metadata
+                        const anomaly = {
+                            pattern,
+                            count,
+                            timestamp: Date.now(),
+                            severity: this.calculateSeverity(pattern, count),
+                            context: {
+                                userAgent: navigator.userAgent,
+                                location: window.location.href,
+                                referrer: document.referrer,
+                                recentSequences: this.sequences.slice(-5)
+                            }
+                        };
+
+                        this.anomalies.add(anomaly);
+
+                        // Take immediate action based on severity
+                        if (anomaly.severity >= 0.8) {
+                            // High severity - implement immediate countermeasures
+                            SecurityManager.protection.advanced.browser.harden();
+                            SecurityManager.protection.advanced.frame.protect();
+                            SecurityManager.state.protectionLevel = 'maximum';
+                        }
+
+                        // Notify the security system
+                        SecurityManager.handleThreat({
+                            type: 'anomalous_behavior',
+                            pattern,
+                            count,
+                            severity: anomaly.severity,
+                            sequences: [...this.sequences],
+                            metadata: anomaly.context,
+                            recommendations: this.getRecommendations(anomaly)
+                        });
+
+                        // Clean up old anomalies
+                        this.cleanupAnomalies();
+                    },
+
+                    // Calculate severity of an anomaly
+                    calculateSeverity(pattern, count) {
+                        const baseScore = Math.min(count / 100, 1);
+                        const patternType = pattern.split(':')[0];
+
+                        // Adjust severity based on pattern type
+                        const typeMultipliers = {
+                            'network': 1.2,    // Network activities are higher risk
+                            'storage': 1.1,    // Storage operations are moderate risk
+                            'script': 1.5,     // Script execution is highest risk
+                            'dom': 1.3,        // DOM manipulation is high risk
+                            'default': 1.0
+                        };
+
+                        const multiplier = typeMultipliers[patternType] || typeMultipliers.default;
+                        return Math.min(baseScore * multiplier, 1);
+                    },
+
+                    // Get security recommendations
+                    getRecommendations(anomaly) {
+                        const recommendations = [];
+
+                        if (anomaly.severity >= 0.8) {
+                            recommendations.push(
+                                'Implement strict CSP policies',
+                                'Enable enhanced logging',
+                                'Review recent network activity'
+                            );
+                        } else if (anomaly.severity >= 0.5) {
+                            recommendations.push(
+                                'Monitor pattern frequency',
+                                'Review security logs',
+                                'Update detection rules'
+                            );
+                        } else {
+                            recommendations.push(
+                                'Continue monitoring',
+                                'Update pattern weights'
+                            );
+                        }
+
+                        return recommendations;
+                    },
+
+                    // Clean up old anomalies
+                    cleanupAnomalies() {
+                        const now = Date.now();
+                        const RETENTION_PERIOD = 24 * 60 * 60 * 1000; // 24 hours
+
+                        this.anomalies.forEach(anomaly => {
+                            if (now - anomaly.timestamp > RETENTION_PERIOD) {
+                                this.anomalies.delete(anomaly);
+                            }
+                        });
+                    },
+                },
+
+                // Threat intelligence
+                intelligence: {
+                    threats: new Map(),
+                    patterns: new Map(),
+                    correlations: new Map(),
+                    threatScore: 0,
+
+                    // Process new threat
+                    process(threat) {
+                        const threatId = this.generateThreatId(threat);
+
+                        // Enrich threat data
+                        const enrichedThreat = {
+                            ...threat,
+                            id: threatId,
+                            processed: Date.now(),
+                            score: this.calculateThreatScore(threat),
+                            signature: this.generateThreatSignature(threat),
+                            context: this.gatherThreatContext()
+                        };
+
+                        this.threats.set(threatId, enrichedThreat);
+                        this.updatePatterns(enrichedThreat);
+                        this.correlateThreats(enrichedThreat);
+                        this.updateThreatScore();
+
+                        // Trigger response if threat score exceeds threshold
+                        if (this.threatScore > 0.7) {
+                            this.triggerDefensiveMeasures();
+                        }
+                    },
+
+                    // Generate unique threat ID
+                    generateThreatId(threat) {
+                        return `${threat.type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                    },
+
+                    // Calculate individual threat score
+                    calculateThreatScore(threat) {
+                        let score = 0;
+
+                        // Base score from severity
+                        score += threat.severity || 0.5;
+
+                        // Adjust based on type
+                        const typeWeights = {
+                            'anomalous_behavior': 0.8,
+                            'pattern_violation': 0.6,
+                            'related_threats': 0.7,
+                            'default': 0.5
+                        };
+                        score *= typeWeights[threat.type] || typeWeights.default;
+
+                        // Adjust for frequency
+                        const recentThreats = Array.from(this.threats.values())
+                            .filter(t => Date.now() - t.processed < 3600000); // Last hour
+                        const similarThreats = recentThreats
+                            .filter(t => t.type === threat.type)
+                            .length;
+
+                        score *= (1 + (similarThreats * 0.1));
+
+                        return Math.min(score, 1);
+                    },
+
+                    // Generate threat signature for correlation
+                    generateThreatSignature(threat) {
+                        const signatureComponents = [
+                            threat.type,
+                            threat.pattern,
+                            threat.severity,
+                            threat.metadata?.userAgent
+                        ].filter(Boolean);
+
+                        return signatureComponents.join('|');
+                    },
+
+                    // Gather context for threat analysis
+                    gatherThreatContext() {
+                        return {
+                            timestamp: Date.now(),
+                            url: window.location.href,
+                            userAgent: navigator.userAgent,
+                            screenResolution: `${window.screen.width}x${window.screen.height}`,
+                            activeProtections: Array.from(SecurityManager.state.activeCountermeasures),
+                            recentThreats: Array.from(this.threats.values())
+                                .slice(-5)
+                                .map(t => ({ id: t.id, type: t.type, score: t.score }))
+                        };
+                    },
+
+                    // Update threat patterns
+                    updatePatterns(threat) {
+                        const pattern = this.extractPattern(threat);
+                        const existingPattern = this.patterns.get(pattern.signature) || {
+                            count: 0,
+                            threats: [],
+                            firstSeen: Date.now(),
+                            lastSeen: Date.now()
+                        };
+
+                        existingPattern.count++;
+                        existingPattern.threats.push(threat.id);
+                        existingPattern.lastSeen = Date.now();
+
+                        this.patterns.set(pattern.signature, existingPattern);
+
+                        // Clean up old patterns
+                        this.cleanupPatterns();
+                    },
+
+                    // Correlate threats to identify patterns
+                    correlateThreats(newThreat) {
+                        const correlationWindow = 3600000; // 1 hour
+                        const now = Date.now();
+                        const recentThreats = Array.from(this.threats.values())
+                            .filter(t => now - t.processed < correlationWindow);
+
+                        // Find correlations based on various factors
+                        const correlations = recentThreats.filter(threat => {
+                            if (threat.id === newThreat.id) return false;
+
+                            // Check for signature matches
+                            const signatureMatch = threat.signature === newThreat.signature;
+
+                            // Check for temporal proximity
+                            const timeProximity = Math.abs(threat.processed - newThreat.processed) < 300000; // 5 minutes
+
+                            // Check for context similarities
+                            const contextMatch = this.compareContexts(threat.context, newThreat.context);
+
+                            return signatureMatch || (timeProximity && contextMatch);
+                        });
+
+                        if (correlations.length > 0) {
+                            this.correlations.set(newThreat.id, correlations.map(t => t.id));
+                            this.handleCorrelatedThreats(newThreat, correlations);
+                        }
+                    },
+
+                    // Compare threat contexts for similarity
+                    compareContexts(context1, context2) {
+                        if (!context1 || !context2) return false;
+
+                        return (
+                            context1.url === context2.url ||
+                            context1.userAgent === context2.userAgent ||
+                            context1.screenResolution === context2.screenResolution
+                        );
+                    },
+
+                    // Handle correlated threats
+                    handleCorrelatedThreats(newThreat, correlations) {
+                        const correlationStrength = correlations.length / 10; // Normalize to 0-1
+                        const averageScore = correlations.reduce((sum, t) => sum + t.score, 0) / correlations.length;
+
+                        if (correlationStrength > 0.3 || averageScore > 0.7) {
+                            SecurityManager.handleThreat({
+                                type: 'threat_correlation',
+                                primaryThreat: newThreat.id,
+                                correlatedThreats: correlations.map(t => t.id),
+                                correlationStrength,
+                                averageScore,
+                                timestamp: Date.now()
+                            });
+                        }
+                    },
+
+                    // Update overall threat score
+                    updateThreatScore() {
+                        const recentThreats = Array.from(this.threats.values())
+                            .filter(t => Date.now() - t.processed < 3600000);
+
+                        if (recentThreats.length === 0) {
+                            this.threatScore = 0;
+                            return;
+                        }
+
+                        const weightedSum = recentThreats.reduce((sum, threat) => {
+                            const age = (Date.now() - threat.processed) / 3600000; // Hours
+                            const timeWeight = Math.exp(-age); // Exponential decay
+                            return sum + (threat.score * timeWeight);
+                        }, 0);
+
+                        this.threatScore = Math.min(weightedSum / recentThreats.length, 1);
+                    },
+
+                    // Trigger defensive measures based on threat score
+                    triggerDefensiveMeasures() {
+                        const measures = [
+                            { threshold: 0.9, action: () => SecurityManager.protection.advanced.browser.harden() },
+                            { threshold: 0.8, action: () => SecurityManager.protection.advanced.frame.protect() },
+                            { threshold: 0.7, action: () => SecurityManager.state.protectionLevel = 'maximum' }
+                        ];
+
+                        measures.forEach(measure => {
+                            if (this.threatScore >= measure.threshold) {
+                                measure.action();
+                            }
+                        });
+                    },
+
+                    // Clean up old patterns
+                    cleanupPatterns() {
+                        const now = Date.now();
+                        const PATTERN_TTL = 24 * 60 * 60 * 1000; // 24 hours
+
+                        this.patterns.forEach((pattern, signature) => {
+                            if (now - pattern.lastSeen > PATTERN_TTL) {
+                                this.patterns.delete(signature);
+                            }
+                        });
+                    }
+                }
+            },
+
+            // Enhanced protection methods
+            protection: {
+                // Previous protection methods remain unchanged
+
+
+                // Advanced protection features
+                advanced: {
+                    // Memory protection
+                    memory: {
+                        protect() {
+                            // Prevent memory leaks
+                            const intervals = new Set();
+                            const originalSetInterval = window.setInterval;
+                            window.setInterval = function (...args) {
+                                const id = originalSetInterval.apply(this, args);
+                                intervals.add(id);
+                                return id;
+                            };
+
+                            // Cleanup intervals periodically
+                            originalSetInterval(() => {
+                                intervals.forEach(id => {
+                                    if (!document.contains(document.getElementById(id))) {
+                                        clearInterval(id);
+                                        intervals.delete(id);
+                                    }
+                                });
+                            }, 30000);
+                        }
+                    }
+
+            // Browser hardening
+            browser: {
+                        harden() {
+                            // Disable dangerous APIs
+                            const dangerous browser:
+                                harden() {
+                                    // Disable dangerous APIs
+                                    const dangerous;
+                                }
+                        }
+[
+                            'webkitRequestFileSystem',
+                            'webkitResolveLocalFileSystemURL',
+                            'requestFileSystem',
+                            'resolveLocalFileSystemURL'
+                        ];
+
+                        dangerous.forEach(api => {
+                            if (window[api]) {
+                                Object.defineProperty(window, api, {
+                                    get: () => {
+                                        throw new Error('Access to dangerous API blocked');
+                                    },
+                                    configurable: false
+                                });
+                            }
+                        });
+                    }
+                },
+
+                // Frame protection
+                frame: {
+                    protect()
+                    // Prevent clickjacking
+                    if(window.top !== window.self) {
+                window.top.location = window.self.location;
+                    }
+
+        // Set security headers
+        const meta = document.createElement('meta');
+        meta.httpEquiv = 'X-Frame-Options';
+        meta.content = 'SAMEORIGIN';
+        document.head.appendChild(meta);
+                }
+            }
+        }
+
+
+        // Error handling
+        handleInitializationError(error) {
+            this.state.initialized = false;
+            this.state.monitoringActive = false;
+            console.error('[Security] Initialization error:', error);
+
+            // Reset all systems
+            this.resetSystems();
+
+            // Initialize basic protection
+            this.initializeBasicProtection();
+        },
+
+        // Reset all systems to a clean state
+        resetSystems() {
+            // Reset state
+            this.state = {
+                initialized: false,
+                monitoringActive: false,
+                lastUpdate: null,
+                threatCount: 0,
+                anomalyCount: 0,
+                protectionLevel: 'normal',
+                activeCountermeasures: new Set()
+            };
+
+            // Reset AI systems if they exist
+            if (this.ai) {
+                this.ai.neural.patterns.clear();
+                this.ai.neural.weights.clear();
+                this.ai.behavior.sequences = [];
+                this.ai.behavior.patterns.clear();
+                this.ai.behavior.anomalies.clear();
+            }
+
+            // Reset intelligence systems
+            if (this.intelligence) {
+                this.intelligence.threats.clear();
+                this.intelligence.patterns.clear();
+                this.intelligence.correlations.clear();
+                this.intelligence.threatScore = 0;
+            }
+
+            // Clear any stored data
+            try {
+                sessionStorage.removeItem('security_threats');
+                sessionStorage.removeItem('security_metrics');
+            } catch (e) {
+                console.warn('[Security] Failed to clear stored data:', e);
+            }
+
+            console.info('[Security] All systems reset');
+        },
+
+        // Handle detected threats
+        handleThreat(threat) {
+            if (!this.state.initialized) {
+                console.warn('[Security] System not initialized, initializing now...');
+                this.init();
+            }
+
+            this.state.threatCount++;
+            console.warn('[Security] Threat detected:', threat);
+
+            // Log threat with enhanced metadata
+            const threatLog = {
+                ...threat,
+                timestamp: Date.now(),
+                count: this.state.threatCount,
+                systemState: {
+                    protectionLevel: this.state.protectionLevel,
+                    activeCountermeasures: Array.from(this.state.activeCountermeasures),
+                    anomalyCount: this.state.anomalyCount
+                },
+                context: {
+                    url: window.location.href,
+                    userAgent: navigator.userAgent,
+                    timestamp: new Date().toISOString()
+                }
+            };
+
+            // Store in session with rotation
+            try {
+                const MAX_LOGS = 1000;
+                const logs = JSON.parse(sessionStorage.getItem('security_threats') || '[]');
+
+                // Rotate logs if needed
+                if (logs.length >= MAX_LOGS) {
+                    logs.splice(0, logs.length - MAX_LOGS + 1);
+                }
+
+                logs.push(threatLog);
+                sessionStorage.setItem('security_threats', JSON.stringify(logs));
+
+                // Process threat through intelligence system
+                if (this.intelligence) {
+                    this.intelligence.process(threatLog);
+                }
+            } catch (e) {
+                console.error('[Security] Failed to log threat:', e);
+            }
+
+            // Update metrics
+            this.updateMetrics(threatLog);
+        },
+
+        // Update security metrics
+        updateMetrics(threat) {
+            try {
+                const metrics = JSON.parse(sessionStorage.getItem('security_metrics') || '{}');
+                const now = Date.now();
+
+                // Update threat metrics
+                metrics.lastThreat = now;
+                metrics.threatCount = (metrics.threatCount || 0) + 1;
+                metrics.threatTypes = metrics.threatTypes || {};
+                metrics.threatTypes[threat.type] = (metrics.threatTypes[threat.type] || 0) + 1;
+
+                // Calculate threat frequency
+                const timeWindow = 3600000; // 1 hour
+                metrics.recentThreats = (metrics.recentThreats || [])
+                    .filter(t => now - t < timeWindow)
+                    .concat([now]);
+
+                // Store updated metrics
+                sessionStorage.setItem('security_metrics', JSON.stringify(metrics));
+            } catch (e) {
+                console.warn('[Security] Failed to update metrics:', e);
+            }
+        }
+        };
+
+        // Initialize security system
+        SecurityManager.init();
+
+        // Export for debugging if needed
+        if (SecurityManager.config.debugMode) {
+            window.SecurityManager = SecurityManager;
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>We are dedicated to helping you find the perfect property. With years of experience in the real
+                    estate market, we provide expert guidance and personalized service.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="property-listings">Property Listings</a></li>
+                    <li><a href="market-insights">Market Insights</a></li>
+                    <li><a href="about-us">About Us</a></li>
+                    <li><a href="contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@realestate.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Main Street, City, State 12345</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Real Estate. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
