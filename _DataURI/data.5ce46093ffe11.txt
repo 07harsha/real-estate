@@ -1,1 +1,0 @@
-chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/content_scripts/detect-embedded.js
